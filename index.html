@@ -3,262 +3,481 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghulam Ali Rasuli - Resume</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Ghulam Ali Rasuli - Professional Resume</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* Apply box-sizing globally for consistent layout behavior */
-        *,
-        *::before,
-        *::after {
+        * {
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
-            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
-        .container {
-            max-width: 800px;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .section-title {
-            @apply text-xl md:text-2xl font-bold text-indigo-700 mb-4 pb-2 border-b-2 border-indigo-200;
+            @apply text-2xl font-bold mb-6 relative pb-3;
+            font-family: 'Poppins', sans-serif;
         }
-        /* Styling for list items with custom bullets */
-        ul {
-            list-style: none; /* Remove default list bullets */
-            padding-left: 0;
+        .section-title::after {
+            content: '';
+            @apply absolute bottom-0 left-0 w-16 h-1 rounded-full;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
         }
-        ul li {
-            margin-bottom: 0.5rem; /* Added margin for list items to ensure spacing */
+        .card {
+            @apply bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6;
+            border: 1px solid rgba(102, 126, 234, 0.1);
         }
-        ul li:last-child {
-            margin-bottom: 0; /* No margin for the last list item */
+        .card-hover {
+            @apply transform hover:scale-105 transition-transform duration-300;
         }
-        ul li:before {
-            content: '•'; /* Add custom bullet point */
-            color: #4f46e5; /* Tailwind indigo-600 */
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
+        .badge {
+            @apply inline-block px-4 py-1 rounded-full text-sm font-medium;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            color: #667eea;
         }
-
-        /* CSS for Tabs */
-        .tabs-container {
-            @apply bg-white rounded-xl shadow-md p-4;
+        .skill-tag {
+            @apply inline-block px-3 py-2 rounded-lg text-sm font-medium mb-2 mr-2;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
         }
-        .tab-buttons {
-            @apply flex flex-wrap gap-2 mb-4 border-b border-gray-200 pb-2;
+        .timeline-item {
+            @apply mb-8 pb-8 border-l-4 border-transparent hover:border-indigo-500 transition-colors duration-300 pl-6 ml-2;
+        }
+        .timeline-item::before {
+            content: '';
+            @apply absolute w-4 h-4 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 -left-2 top-1;
+            position: relative;
+            left: -24px;
+        }
+        .icon-box {
+            @apply w-12 h-12 rounded-xl flex items-center justify-center text-white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .btn-primary {
+            @apply px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300 hover:shadow-xl;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
         }
         .tab-button {
-            @apply px-4 py-2 rounded-t-lg font-medium text-gray-700 hover:bg-indigo-50 transition-colors duration-200;
-            border-bottom: 2px solid transparent;
+            @apply px-6 py-3 font-medium rounded-t-lg transition-all duration-300 relative;
+            color: #6b7280;
         }
         .tab-button.active {
-            @apply text-indigo-700 border-indigo-600 bg-indigo-50;
+            color: #667eea;
+            font-weight: 600;
+        }
+        .tab-button.active::after {
+            content: '';
+            @apply absolute bottom-0 left-0 right-0 h-1 rounded-t-lg;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
         }
         .tab-content {
-            display: none; /* Hidden by default */
-            padding-top: 1rem; /* Padding for content inside tabs */
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
         }
         .tab-content.active {
-            display: block; /* Shown when active */
+            display: block;
         }
-
-        /* Hover transitions for links and buttons */
-        a {
-            transition: color 0.3s ease, transform 0.3s ease;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        a:hover {
-            color: #6366f1; /* Tailwind indigo-500 */
-            transform: translateY(-1px);
+        .header-bg {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+            backdrop-filter: blur(10px);
         }
-        .btn-link {
-            @apply inline-block px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75 transition-all duration-300 ease-in-out;
+        .profile-image {
+            @apply w-40 h-40 rounded-2xl object-cover shadow-2xl;
+            border: 4px solid white;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+        .contact-item {
+            @apply flex items-center gap-3 mb-3 text-gray-700;
+        }
+        .contact-icon {
+            @apply w-6 h-6 flex-shrink-0;
+            color: #667eea;
+        }
+        .divider {
+            @apply my-8 h-1 bg-gradient-to-r from-transparent via-gray-200 to-transparent rounded-full;
         }
     </style>
 </head>
-<body class="p-4 md:p-8">
-    <div class="container mx-auto bg-white shadow-lg rounded-xl overflow-hidden my-8 p-6 md:p-8 lg:p-10">
+<body>
+    <div class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Main Resume Card -->
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                
+                <!-- Header Section with Profile -->
+                <div class="header-bg p-8 sm:p-12">
+                    <div class="flex flex-col sm:flex-row items-center gap-8">
+                        <div class="flex-1">
+                            <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-2" style="font-family: 'Poppins', sans-serif;">
+                                Ghulam Ali Rasuli
+                            </h1>
+                            <p class="gradient-text text-xl sm:text-2xl font-semibold mb-6">Web Developer</p>
+                            <div class="space-y-2 text-gray-700">
+                                <div class="contact-item">
+                                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                    <span>District 13th, Kabul, Afghanistan</span>
+                                </div>
+                                <div class="contact-item">
+                                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773c.26.559.934 1.42 2.46 2.947 1.026-1.026 1.887-1.694 2.946-2.46l.773 1.548a1 1 0 001.06.54l4.435-.74a1 1 0 01.836.986v2.153a1 1 0 01-1 1h-2.183C7.168 16.99 3.01 12.832 3.01 7.979V5.05a1 1 0 011-1h.953z"></path></svg>
+                                    <span>+93(0)780876865 / +93(0)774307522</span>
+                                </div>
+                                <div class="contact-item">
+                                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                                    <a href="mailto:ghulamali456@gmail.com" class="text-indigo-600 hover:text-purple-600 font-semibold transition-colors">ghulamali456@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <img src="my.jpg" onerror="this.onerror=null;this.src='https://placehold.co/160x160/667eea/ffffff?text=Profile';" alt="Ghulam Ali Rasuli" class="profile-image">
+                        </div>
+                    </div>
+                </div>
 
-        <!-- Header Section -->
-        <header class="flex flex-col md:flex-row items-center md:items-start justify-between mb-8 pb-6 border-b border-gray-200">
-            <div class="text-center md:text-left mb-6 md:mb-0">
-                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-2">Ghulam Ali Rasuli</h1>
-                <p class="text-gray-600 text-lg">Web Developer</p>
-                <div class="mt-4 text-gray-700">
-                    <p>District 13th, Kabul, Afghanistan</p>
-                    <p>+93(0)780876865 AND +93(0)774307522</p>
-                    <p><a href="mailto:ghulamali456@gmail.com" class="text-indigo-600 hover:underline">ghulamali456@gmail.com</a></p>
+                <div class="p-8 sm:p-12">
+                    
+                    <!-- Career Objective -->
+                    <section class="mb-10">
+                        <h2 class="section-title">Professional Summary</h2>
+                        <div class="card">
+                            <p class="text-gray-700 leading-relaxed text-lg">
+                                Experienced Web Developer with a passion for creating innovative digital solutions. Seeking a challenging career in Web Development to leverage technical expertise and communication skills to achieve organizational objectives through team collaboration and delivering high-quality results.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Specialization -->
+                    <section class="mb-10">
+                        <h2 class="section-title">Specialization</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="card flex items-center gap-4">
+                                <div class="icon-box">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10.5 1.5H4.75A2.25 2.25 0 002.5 3.75v12.5A2.25 2.25 0 004.75 18.5h10.5a2.25 2.25 0 002.25-2.25V6.5m-13-5v5m8-5v5M2.5 10.5h15"></path></svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-900">PHP (Laravel)</h3>
+                                    <p class="text-gray-600 text-sm">Backend Framework</p>
+                                </div>
+                            </div>
+                            <div class="card flex items-center gap-4">
+                                <div class="icon-box">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 3.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM2 10a8 8 0 1116 0 8 8 0 01-16 0z"></path></svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-900">Python (Django)</h3>
+                                    <p class="text-gray-600 text-sm">Web Framework</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="divider"></div>
+
+                    <!-- Tabbed Sections -->
+                    <div class="mb-10">
+                        <div class="flex flex-wrap border-b-2 border-gray-200 mb-8">
+                            <button class="tab-button active" data-tab="experience">💼 Experience</button>
+                            <button class="tab-button" data-tab="education">🎓 Education</button>
+                            <button class="tab-button" data-tab="certificates">🏆 Certificates</button>
+                        </div>
+
+                        <!-- Work Experience Tab -->
+                        <div id="experience" class="tab-content active">
+                            <div class="space-y-6">
+                                <div class="timeline-item">
+                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                                        <h3 class="text-xl font-bold text-gray-900">Web Developer</h3>
+                                        <span class="badge">Since Nov 2020</span>
+                                    </div>
+                                    <p class="text-indigo-600 font-semibold mb-3">Sharifineya Travel Agency</p>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li class="flex items-start gap-3">
+                                            <span class="text-indigo-500 font-bold mt-1">•</span>
+                                            <span>Designing responsive User Interfaces with modern frameworks</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="text-indigo-500 font-bold mt-1">•</span>
+                                            <span>Designing and optimizing Database architectures</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="text-indigo-500 font-bold mt-1">•</span>
+                                            <span>Managing MVC architecture for scalable applications</span>
+                                        </li>
+                                    </ul>
+                                    <div class="mt-4">
+                                        <a href="https://www.sharifineya.net" target="_blank" class="inline-flex items-center gap-2 text-indigo-600 hover:text-purple-600 font-semibold transition-colors">
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h4a.75.75 0 010 1.5h-4z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 001.06.053l4.5-4.25a.75.75 0 10-1.06-1.06l4.5 4.25a.75.75 0 001.06-.053l2.25-2.5a.75.75 0 10-1.06-1.06l-1.69 1.22-3.45-3.25a.75.75 0 10-1.06 1.06l2.5 2.35-3.44 3.25a.75.75 0 00.053 1.06z" clip-rule="evenodd"></path></svg>
+                                            Visit Website
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                                        <h3 class="text-xl font-bold text-gray-900">Web Developer</h3>
+                                        <span class="badge">Aug 2017 - Sep 2020</span>
+                                    </div>
+                                    <p class="text-indigo-600 font-semibold mb-3">ANAR SABZ TRADING COMPANY</p>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li class="flex items-start gap-3">
+                                            <span class="text-indigo-500 font-bold mt-1">•</span>
+                                            <span>Designed and implemented intuitive User Interfaces</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="text-indigo-500 font-bold mt-1">•</span>
+                                            <span>Created robust database schemas and optimization</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <span class="text-indigo-500 font-bold mt-1">•</span>
+                                            <span>Maintained view and controller layers of applications</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                                        <h3 class="text-xl font-bold text-gray-900">Data Entry Operator</h3>
+                                        <span class="badge">Oct 2016 - Jun 2017</span>
+                                    </div>
+                                    <p class="text-indigo-600 font-semibold mb-3">NETLINKS Ltd (APPS Project)</p>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li class="flex items-start gap-3">
+                                            <span class="text-indigo-500 font-bold mt-1">•</span>
+                                            <span>Registered military officers in AHRIMS (Afghan Human Resource Information Management System)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Education Tab -->
+                        <div id="education" class="tab-content">
+                            <div class="space-y-6">
+                                <div class="timeline-item">
+                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                                        <h3 class="text-xl font-bold text-gray-900">Bachelor in Computer Science</h3>
+                                        <span class="badge">2012 - 2015</span>
+                                    </div>
+                                    <p class="text-indigo-600 font-semibold">University of Calicut, Kerala, India</p>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                                        <h3 class="text-xl font-bold text-gray-900">Baccalaureate</h3>
+                                        <span class="badge">Graduated 2011</span>
+                                    </div>
+                                    <p class="text-indigo-600 font-semibold">Abdul Rahim Shaheed High School, Kabul, Afghanistan</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certificates Tab -->
+                        <div id="certificates" class="tab-content">
+                            <div class="space-y-6">
+                                <div class="timeline-item">
+                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                                        <h3 class="text-xl font-bold text-gray-900">Certificate in Web Development</h3>
+                                        <span class="badge">February 2015</span>
+                                    </div>
+                                    <p class="text-indigo-600 font-semibold">Al-Farook Educational Center, Kerala, India</p>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                                        <h3 class="text-xl font-bold text-gray-900">Certificate in C++ Programming</h3>
+                                        <span class="badge">November 2013</span>
+                                    </div>
+                                    <p class="text-indigo-600 font-semibold">Al-Farook Educational Center, Kerala, India</p>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                                        <h3 class="text-xl font-bold text-gray-900">Certificate in C Programming</h3>
+                                        <span class="badge">November 2013</span>
+                                    </div>
+                                    <p class="text-indigo-600 font-semibold">Al-Farook Educational Center, Kerala, India</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <!-- Achievements -->
+                    <section class="mb-10">
+                        <h2 class="section-title">Achievements</h2>
+                        <div class="grid gap-4">
+                            <div class="card flex items-start gap-4">
+                                <div class="icon-box mt-1">⭐</div>
+                                <p class="text-gray-700">Merit Certificates from Ministry of Interior and General Commanding of Border Police</p>
+                            </div>
+                            <div class="card flex items-start gap-4">
+                                <div class="icon-box mt-1">🏅</div>
+                                <p class="text-gray-700">Merit Certificates for Successfully Completion of biometric project under Supervision of ISAF at Kabul</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Technical Skills -->
+                    <section class="mb-10">
+                        <h2 class="section-title">Technical Skills</h2>
+                        <div class="card">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-3">Backend</h4>
+                                    <div>
+                                        <span class="skill-tag">PHP (Laravel)</span>
+                                        <span class="skill-tag">Python (Django)</span>
+                                        <span class="skill-tag">RESTful APIs</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-3">Frontend</h4>
+                                    <div>
+                                        <span class="skill-tag">JavaScript</span>
+                                        <span class="skill-tag">React</span>
+                                        <span class="skill-tag">Tailwind CSS</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-3">Database</h4>
+                                    <div>
+                                        <span class="skill-tag">MySQL</span>
+                                        <span class="skill-tag">PostgreSQL</span>
+                                        <span class="skill-tag">MongoDB</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-3">Tools</h4>
+                                    <div>
+                                        <span class="skill-tag">Git</span>
+                                        <span class="skill-tag">Docker</span>
+                                        <span class="skill-tag">AWS</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Portfolio & Links -->
+                    <section class="mb-10">
+                        <h2 class="section-title">Connect With Me</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <a href="https://www.linkedin.com/in/ghulam-ali-rasuli-9a645a27b" target="_blank" class="card card-hover text-center hover:border-indigo-500">
+                                <div class="icon-box mx-auto mb-3 w-14 h-14">
+                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2 4a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H3a1 1 0 01-1-1V4zm7 5a2 2 0 11-4 0 2 2 0 014 0zm2-2a3 3 0 11-6 0 3 3 0 016 0z" clip-rule="evenodd"></path></svg>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-1">LinkedIn</h3>
+                                <p class="text-sm text-gray-600">Connect with me</p>
+                            </a>
+                            <a href="https://github.com/ghulamalirasuli" target="_blank" class="card card-hover text-center hover:border-indigo-500">
+                                <div class="icon-box mx-auto mb-3 w-14 h-14">
+                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-1">GitHub</h3>
+                                <p class="text-sm text-gray-600">View my projects</p>
+                            </a>
+                            <a href="mailto:ghulamali456@gmail.com" class="card card-hover text-center hover:border-indigo-500">
+                                <div class="icon-box mx-auto mb-3 w-14 h-14">
+                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-1">Email</h3>
+                                <p class="text-sm text-gray-600">Get in touch</p>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- Soft Skills & Languages -->
+                    <section class="mb-10">
+                        <h2 class="section-title">Soft Skills & Languages</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="card">
+                                <h4 class="font-bold text-gray-900 mb-4">Soft Skills</h4>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center gap-3 text-gray-700">
+                                        <span class="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600"></span>
+                                        Problem-solving & Critical Thinking
+                                    </li>
+                                    <li class="flex items-center gap-3 text-gray-700">
+                                        <span class="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600"></span>
+                                        Team Collaboration & Leadership
+                                    </li>
+                                    <li class="flex items-center gap-3 text-gray-700">
+                                        <span class="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600"></span>
+                                        Communication & Presentation
+                                    </li>
+                                    <li class="flex items-center gap-3 text-gray-700">
+                                        <span class="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600"></span>
+                                        Adaptability & Time Management
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h4 class="font-bold text-gray-900 mb-4">Languages</h4>
+                                <ul class="space-y-3">
+                                    <li>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-gray-700 font-medium">English</span>
+                                            <span class="text-gray-600 text-sm">Fluent</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 h-2 rounded-full" style="width: 90%"></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-gray-700 font-medium">Dari</span>
+                                            <span class="text-gray-600 text-sm">Native</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 h-2 rounded-full" style="width: 100%"></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-gray-700 font-medium">Pashto</span>
+                                            <span class="text-gray-600 text-sm">Proficient</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 h-2 rounded-full" style="width: 85%"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
                 </div>
             </div>
-            <div class="flex-shrink-0">
-                <img src="1smy.jpg" onerror="this.onerror=null;this.src='https://placehold.co/150x150/E0E0E0/333333?text=Profile';" alt="Ghulam Ali Rasuli" class="w-36 h-36 rounded-full object-cover shadow-md border-4 border-indigo-100">
+
+            <!-- Footer -->
+            <div class="text-center mt-8 text-white text-sm">
+                <p>© 2026 Ghulam Ali Rasuli. All rights reserved.</p>
+                <p>Last Updated: April 2026</p>
             </div>
-        </header>
-
-        <!-- Career Objective -->
-        <section class="mb-8">
-            <h2 class="section-title">Career Objective</h2>
-            <p class="text-gray-700 leading-relaxed">
-                Seeking a challenging career in the Web development sector to get a position of responsibility, using my skills
-                efficiency to communicate my ideas and views, and commit myself for achieving organization objectives with the
-                team effort and my positive attitude and performance.
-            </p>
-        </section>
-
-        <!-- Specialization -->
-        <section class="mb-8">
-            <h2 class="section-title">Specialization</h2>
-            <ul class="list-disc pl-5 text-gray-700">
-                <li class="mb-1">PHP (Laravel)</li>
-                <li>Python (Django)</li>
-            </ul>
-        </section>
-
-        <!-- Tabs Container for key sections -->
-        <div class="tabs-container">
-            <div class="tab-buttons" role="tablist" aria-label="Resume Sections">
-                <button class="tab-button active" role="tab" aria-selected="true" aria-controls="work-experience-tab" id="tab-btn-work">Work Experience</button>
-                <button class="tab-button" role="tab" aria-selected="false" aria-controls="education-tab" id="tab-btn-education">Education</button>
-                <button class="tab-button" role="tab" aria-selected="false" aria-controls="certificates-tab" id="tab-btn-certificates">Certificates</button>
-            </div>
-
-            <div id="work-experience-tab" class="tab-content active" role="tabpanel" tabindex="0" aria-labelledby="tab-btn-work">
-                  <div class="mb-4">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-1">
-                        <h3 class="text-lg font-semibold text-gray-800">Web Developer</h3>
-                        <span class="text-sm text-gray-500">Since Nov 2020</span>
-                    </div>
-                    <p class="text-indigo-600 font-medium">Sharifineya Travel Agency</p>
-                    <ul class="list-disc pl-5 text-gray-700">
-                        <li>Designing User Interface</li>
-                        <li>Designing Database</li>
-                        <li>Managing the view and controller</li>
-                    </ul>
-                    <div class="flex items-center mt-2">
-                        <svg class="globe-icon w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.292 7.117 5 8 5c.883 0 1.488.292 1.756.321C10.43 5.483 11 6.138 11 7a3 3 0 01-6 0c0-.862.57-1.517 1.332-1.673-.243-.036-.5-.054-.764-.054-1.879 0-3.411 1.574-3.411 3.5 0 .862.292 1.488.321 1.756-.036.243-.054.5-.054.764 0 1.879 1.574 3.411 3.5 3.411.862 0 1.488-.292 1.756-.321C14.517 14.512 15 15.117 15 16a3 3 0 01-6 0c0-.862.57-1.517 1.332-1.673-.243-.036-.5-.054-.764-.054-1.879 0-3.411 1.574-3.411 3.5 0 .862.292 1.488.321 1.756-.036.243-.054.5-.054.764 0 1.879 1.574 3.411 3.5 3.411z" clip-rule="evenodd"></path></svg>
-                         <a href="https://www.sharifineya.net" target="_blank" class="text-indigo-600 hover:underline"> Sharifi Website</a>
-                    </div>
-                </div>
-
-                <div class="mb-4">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-1">
-                        <h3 class="text-lg font-semibold text-gray-800">Web Developer</h3>
-                        <span class="text-sm text-gray-500">Aug 15, 2017 to Sep 30, 2020</span>
-                    </div>
-                    <p class="text-indigo-600 font-medium">ANAR SABZ TRADING COMPANY</p>
-                    <ul class="list-disc pl-5 text-gray-700">
-                        <li>Designing User Interface</li>
-                        <li>Designing Database</li>
-                        <li>Managing the view and controller</li>
-                    </ul>
-                </div>
-
-                <div class="mb-4">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-1">
-                        <h3 class="text-lg font-semibold text-gray-800">Data Entry Operator</h3>
-                        <span class="text-sm text-gray-500">Oct-2016 till Jun-2017</span>
-                    </div>
-                    <p class="text-indigo-600 font-medium">NETLINKS Ltd (APPS Project)</p>
-                    <ul class="list-disc pl-5 text-gray-700">
-                        <li>Registering military officers in AHRIMS = Afghan Human Resource Information Management System</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div id="education-tab" class="tab-content" role="tabpanel" tabindex="0" aria-labelledby="tab-btn-education">
-                <div class="mb-4">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-1">
-                        <h3 class="text-lg font-semibold text-gray-800">Bachelor in Computer Science</h3>
-                        <span class="text-sm text-gray-500">2012-2015</span>
-                    </div>
-                    <p class="text-indigo-600 font-medium">University of Calicut, Kerala India</p>
-                </div>
-
-                <div class="mb-4">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-1">
-                        <h3 class="text-lg font-semibold text-gray-800">Baccalaureate</h3>
-                        <span class="text-sm text-gray-500">Graduated 2011</span>
-                    </div>
-                    <p class="text-indigo-600 font-medium">Abdul Rahim Shaheed High School, Kabul, Afghanistan</p>
-                </div>
-            </div>
-
-            <div id="certificates-tab" class="tab-content" role="tabpanel" tabindex="0" aria-labelledby="tab-btn-certificates">
-                <div class="mb-4">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-1">
-                        <h3 class="text-lg font-semibold text-gray-800">Certificate in Web Development</h3>
-                        <span class="text-sm text-gray-500">February 2015</span>
-                    </div>
-                    <p class="text-indigo-600 font-medium">Al-Farook Educational Center, Kerala India</p>
-                </div>
-
-                <div class="mb-4">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-1">
-                        <h3 class="text-lg font-semibold text-gray-800">Certificate in C++ Programming</h3>
-                        <span class="text-sm text-gray-500">November 2013</span>
-                    </div>
-                    <p class="text-indigo-600 font-medium">Al-Farook Educational Center, Kerala - India</p>
-                </div>
-
-                <div class="mb-4">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-1">
-                        <h3 class="text-lg font-semibold text-gray-800">Certificate in C Programming</h3>
-                        <span class="text-sm text-gray-500">November 2013</span>
-                    </div>
-                    <p class="text-indigo-600 font-medium">Al-Farook Educational Center, Kerala India</p>
-                </div>
-            </div>
-        </div> <!-- End of Tabs Container -->
-
-        <!-- Achievements -->
-        <section class="mb-8 mt-8"> <!-- Added margin-top for spacing after tabs -->
-            <h2 class="section-title">Achievements</h2>
-            <ul class="list-disc pl-5 text-gray-700">
-                <li>Merit Certificates from Ministry of Interior and General Commanding of Border Police</li>
-                <li>Got Merit Certificates from Ministry of Interior and General Commanding of Border Police for Successfully Completion of biometric project under Supervision of ISAF at Kabul, Afghanistan.</li>
-            </ul>
-        </section>
-
-        <!-- Portfolio/Links Section -->
-        <section class="mb-8">
-            <h2 class="section-title">Portfolio & Links</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-gray-700">
-                <div class="flex items-center space-x-2">
-                    <span class="text-indigo-600">🔗</span>
-                    <a href="https://www.linkedin.com/in/ghulam-ali-rasuli-9a645a27b" target="_blank" class="hover:underline">LinkedIn Profile</a>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <span class="text-indigo-600">🔗</span>
-                    <a href="https://github.com/ghulamalirasuli" target="_blank" class="hover:underline">GitHub Repositories</a>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <span class="text-indigo-600">🔗</span>
-                    <a href="https://yourwebsite.com" target="_blank" class="hover:underline">Personal Website/Portfolio</a>
-                </div>
-                <!-- Add more links as needed -->
-            </div>
-        </section>
-
-        <!-- Additional Information / Skills (for you to edit) -->
-        <section class="mb-8">
-            <h2 class="section-title">Additional Information & Skills</h2>
-            <div class="text-gray-700 leading-relaxed">
-                <p class="mb-2">This section is for you to add any extra information, such as specific technical skills, soft skills, languages, or personal interests that highlight your qualifications. For example:</p>
-                <ul class="list-disc pl-5">
-                    <li><strong>Technical Skills:</strong> JavaScript (React, Vue.js), RESTful APIs, Git, Docker, AWS, SQL, NoSQL</li>
-                    <li><strong>Soft Skills:</strong> Problem-solving, Team Collaboration, Communication, Adaptability</li>
-                    <li><strong>Languages:</strong> English (Fluent), Dari (Native), Pashto (Proficient)</li>
-                    <li><strong>Interests:</strong> Reading about new web technologies, Hiking, Photography</li>
-                </ul>
-            </div>
-        </section>
-
-
+        </div>
     </div>
 
     <script>
@@ -266,67 +485,17 @@
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
 
-            // Function to show a specific tab
-            function showTab(tabId) {
-                tabContents.forEach(content => {
-                    content.classList.remove('active');
-                });
-                tabButtons.forEach(button => {
-                    button.classList.remove('active');
-                    button.setAttribute('aria-selected', 'false');
-                    button.setAttribute('tabindex', '-1'); // Make inactive tabs not focusable by default tab navigation
-                });
-
-                document.getElementById(tabId).classList.add('active');
-                const activeButton = document.querySelector(`[aria-controls="${tabId}"]`);
-                activeButton.classList.add('active');
-                activeButton.setAttribute('aria-selected', 'true');
-                activeButton.setAttribute('tabindex', '0'); // Make active tab focusable
-            }
-
-            // Add click event listeners to tab buttons
             tabButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    const tabId = button.getAttribute('aria-controls');
-                    showTab(tabId);
-                });
-
-                // Add keyboard accessibility for tab buttons
-                button.addEventListener('keydown', (e) => {
-                    const currentTabButton = e.target;
-                    let nextTabButton;
-
-                    // Navigate tabs with arrow keys
-                    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-                        e.preventDefault(); // Prevent scrolling
-                        const currentIndex = Array.from(tabButtons).indexOf(currentTabButton);
-
-                        if (e.key === 'ArrowRight') {
-                            nextTabButton = tabButtons[currentIndex + 1] || tabButtons[0]; // Loop to first
-                        } else { // ArrowLeft
-                            nextTabButton = tabButtons[currentIndex - 1] || tabButtons[tabButtons.length - 1]; // Loop to last
-                        }
-
-                        if (nextTabButton) {
-                            nextTabButton.focus();
-                            nextTabButton.click(); // Activate the tab visually
-                        }
-                    } else if (e.key === 'Home') {
-                        e.preventDefault();
-                        tabButtons[0].focus();
-                        tabButtons[0].click();
-                    } else if (e.key === 'End') {
-                        e.preventDefault();
-                        tabButtons[tabButtons.length - 1].focus();
-                        tabButtons[tabButtons.length - 1].click();
-                    }
+                    const tabId = button.getAttribute('data-tab');
+                    
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));  
+                    
+                    button.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
                 });
             });
-
-            // Show the first tab by default on load
-            if (tabButtons.length > 0) {
-                showTab(tabButtons[0].getAttribute('aria-controls'));
-            }
         });
     </script>
 </body>

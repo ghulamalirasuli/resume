@@ -3,500 +3,528 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghulam Ali Rasuli - Professional Resume</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Ghulam Ali Rasuli — Web Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
+        :root {
+            --bg: #0d0f14;
+            --surface: #13161d;
+            --border: #1e2230;
+            --accent: #5bffa0;
+            --accent2: #3de8ff;
+            --muted: #4a5168;
+            --text: #e8ecf4;
+            --text-dim: #8890a8;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
             min-height: 100vh;
+            overflow-x: hidden;
         }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .section-title {
-            @apply text-2xl font-bold mb-6 relative pb-3;
-            font-family: 'Poppins', sans-serif;
-        }
-        .section-title::after {
+
+        /* Noise texture overlay */
+        body::before {
             content: '';
-            @apply absolute bottom-0 left-0 w-16 h-1 rounded-full;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
         }
-        .card {
-            @apply bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6;
-            border: 1px solid rgba(102, 126, 234, 0.1);
-        }
-        .card-hover {
-            @apply transform hover:scale-105 transition-transform duration-300;
-        }
-        .badge {
-            @apply inline-block px-4 py-1 rounded-full text-sm font-medium;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            color: #667eea;
-        }
-        .skill-tag {
-            @apply inline-block px-3 py-2 rounded-lg text-sm font-medium mb-2 mr-2;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .timeline-item {
-            @apply mb-8 pb-8 border-l-4 border-transparent hover:border-indigo-500 transition-colors duration-300 pl-6 ml-2;
-        }
-        .timeline-item::before {
-            content: '';
-            @apply absolute w-4 h-4 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 -left-2 top-1;
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 2rem;
             position: relative;
-            left: -24px;
+            z-index: 1;
         }
-        .icon-box {
-            @apply w-12 h-12 rounded-xl flex items-center justify-center text-white;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+        /* ── HEADER ── */
+        header {
+            padding: 5rem 0 3rem;
+            border-bottom: 1px solid var(--border);
         }
-        .btn-primary {
-            @apply px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300 hover:shadow-xl;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+        .eyebrow {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-        }
-        .tab-button {
-            @apply px-6 py-3 font-medium rounded-t-lg transition-all duration-300 relative;
-            color: #6b7280;
-        }
-        .tab-button.active {
-            color: #667eea;
-            font-weight: 600;
-        }
-        .tab-button.active::after {
+        .eyebrow::before {
             content: '';
-            @apply absolute bottom-0 left-0 right-0 h-1 rounded-t-lg;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-        }
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-        .tab-content.active {
             display: block;
+            width: 28px;
+            height: 1px;
+            background: var(--accent);
         }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.6rem, 6vw, 4rem);
+            line-height: 1.05;
+            color: var(--text);
+            margin-bottom: 0.5rem;
         }
-        .header-bg {
-            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
-            backdrop-filter: blur(10px);
+
+        .tagline {
+            font-family: 'DM Serif Display', serif;
+            font-style: italic;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--accent2);
+            margin-bottom: 1.8rem;
         }
-        .profile-image {
-            @apply w-40 h-40 rounded-2xl object-cover shadow-2xl;
-            border: 4px solid white;
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+
+        .bio {
+            font-size: 1rem;
+            line-height: 1.75;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin-bottom: 2rem;
         }
-        .contact-item {
-            @apply flex items-center gap-3 mb-3 text-gray-700;
+
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.6rem;
         }
-        .contact-icon {
-            @apply w-6 h-6 flex-shrink-0;
-            color: #667eea;
+
+        .contact-chip {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.78rem;
+            padding: 0.4rem 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
         }
+        .contact-chip:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .skills-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-pill {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.72rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(91, 255, 160, 0.07);
+            border: 1px solid rgba(91, 255, 160, 0.2);
+            border-radius: 4px;
+            color: var(--accent);
+        }
+
+        /* ── PROJECTS ── */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-label {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem;
+            color: var(--text);
+        }
+
+        .section-count {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .project-card {
+            background: var(--surface);
+            padding: 1.6rem 2rem;
+            text-decoration: none;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: start;
+            gap: 1rem;
+            transition: background 0.18s;
+            position: relative;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.2s ease;
+        }
+        .project-card:hover {
+            background: #181b25;
+        }
+        .project-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .project-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.15rem;
+            color: var(--text);
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.18s;
+        }
+        .project-card:hover .project-name {
+            color: var(--accent);
+        }
+
+        .project-desc {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            line-height: 1.55;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .lang-badge {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.68rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 3px;
+            border: 1px solid;
+            white-space: nowrap;
+        }
+        .lang-ts   { color: #3178c6; border-color: rgba(49,120,198,0.3); background: rgba(49,120,198,0.07); }
+        .lang-php  { color: #8892bf; border-color: rgba(136,146,191,0.3); background: rgba(136,146,191,0.07); }
+        .lang-js   { color: #f7df1e; border-color: rgba(247,223,30,0.3); background: rgba(247,223,30,0.07); }
+        .lang-html { color: #e34c26; border-color: rgba(227,76,38,0.3); background: rgba(227,76,38,0.07); }
+        .lang-none { color: var(--muted); border-color: var(--border); background: transparent; }
+
+        .visibility {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.62rem;
+            color: var(--muted);
+            letter-spacing: 0.06em;
+        }
+
+        .arrow {
+            color: var(--muted);
+            font-size: 1rem;
+            transition: color 0.18s, transform 0.18s;
+        }
+        .project-card:hover .arrow {
+            color: var(--accent);
+            transform: translateX(3px) translateY(-3px);
+        }
+
+        /* ── SOCIAL LINKS ── */
+        .footer-links {
+            padding: 2rem 0 4rem;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s;
+        }
+        .social-link:hover { color: var(--accent2); }
+
         .divider {
-            @apply my-8 h-1 bg-gradient-to-r from-transparent via-gray-200 to-transparent rounded-full;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── EXPERIENCE aside ── */
+        .exp-grid {
+            display: grid;
+            gap: 1.2rem;
+        }
+
+        .exp-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.4rem 1.6rem;
+        }
+
+        .exp-role {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.05rem;
+            color: var(--text);
+        }
+        .exp-company {
+            font-size: 0.85rem;
+            color: var(--accent2);
+            margin: 0.2rem 0 0.1rem;
+        }
+        .exp-period {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        @media (max-width: 600px) {
+            .project-card { grid-template-columns: 1fr; }
+            .project-meta { flex-direction: row; align-items: center; }
         }
     </style>
 </head>
 <body>
-    <div class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto">
-            <!-- Main Resume Card -->
-            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                
-                <!-- Header Section with Profile -->
-                <div class="header-bg p-8 sm:p-12">
-                    <div class="flex flex-col sm:flex-row items-center gap-8">
-                        <div class="flex-1">
-                            <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-2" style="font-family: 'Poppins', sans-serif;">
-                                Ghulam Ali Rasuli
-                            </h1>
-                            <p class="gradient-text text-xl sm:text-2xl font-semibold mb-6">Web Developer</p>
-                            <div class="space-y-2 text-gray-700">
-                                <div class="contact-item">
-                                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
-                                    <span>District 13th, Kabul, Afghanistan</span>
-                                </div>
-                                <div class="contact-item">
-                                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773c.26.559.934 1.42 2.46 2.947 1.026-1.026 1.887-1.694 2.946-2.46l.773 1.548a1 1 0 001.06.54l4.435-.74a1 1 0 01.836.986v2.153a1 1 0 01-1 1h-2.183C7.168 16.99 3.01 12.832 3.01 7.979V5.05a1 1 0 011-1h.953z"></path></svg>
-                                    <span>+93(0)780876865 / +93(0)774307522</span>
-                                </div>
-                                <div class="contact-item">
-                                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                                    <a href="mailto:ghulamali456@gmail.com" class="text-indigo-600 hover:text-purple-600 font-semibold transition-colors">ghulamali456@gmail.com</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0">
-                            <img src="my.jpg" onerror="this.onerror=null;this.src='https://placehold.co/160x160/667eea/ffffff?text=Profile';" alt="Ghulam Ali Rasuli" class="profile-image">
-                        </div>
+<div class="container">
+
+    <!-- HEADER / INTRO -->
+    <header>
+        <p class="eyebrow">Portfolio</p>
+        <h1>Ghulam Ali Rasuli</h1>
+        <p class="tagline">Web Developer</p>
+        <p class="bio">
+            Experienced web developer based in Kabul, Afghanistan. I build full-stack web applications
+            with PHP (Laravel), Python (Django), and modern JavaScript. Passionate about clean architecture,
+            responsive interfaces, and shipping products that actually work.
+        </p>
+
+        <div class="contact-row">
+            <a class="contact-chip" href="mailto:ghulamali456@gmail.com">✉ ghulamali456@gmail.com</a>
+            <a class="contact-chip" href="https://github.com/ghulamalirasuli" target="_blank">⌥ github.com/ghulamalirasuli</a>
+            <a class="contact-chip" href="https://www.linkedin.com/in/ghulam-ali-rasuli-9a645a27b" target="_blank">in LinkedIn</a>
+            <a class="contact-chip" href="#">📍 Kabul, Afghanistan</a>
+        </div>
+
+        <div class="skills-row">
+            <span class="skill-pill">PHP · Laravel</span>
+            <span class="skill-pill">Python · Django</span>
+            <span class="skill-pill">TypeScript</span>
+            <span class="skill-pill">React</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">MySQL</span>
+            <span class="skill-pill">PostgreSQL</span>
+            <span class="skill-pill">RESTful APIs</span>
+            <span class="skill-pill">Tailwind CSS</span>
+            <span class="skill-pill">Git</span>
+        </div>
+    </header>
+
+    <!-- PROJECTS -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-label">GitHub Projects</h2>
+            <span class="section-count">15 repositories</span>
+        </div>
+
+        <div class="projects-grid">
+
+            <a class="project-card" href="https://github.com/ghulamalirasuli/job-portal" target="_blank">
+                <div>
+                    <div class="project-name">
+                        job-portal
+                        <span class="arrow">↗</span>
                     </div>
+                    <div class="project-desc">A full-featured job portal application built with TypeScript. Browse listings, post jobs, and manage applications.</div>
                 </div>
+                <div class="project-meta">
+                    <span class="lang-badge lang-ts">TypeScript</span>
+                    <span class="visibility">public</span>
+                </div>
+            </a>
 
-                <div class="p-8 sm:p-12">
-                    
-                    <!-- Career Objective -->
-                    <section class="mb-10">
-                        <h2 class="section-title">Professional Summary</h2>
-                        <div class="card">
-                            <p class="text-gray-700 leading-relaxed text-lg">
-                                Experienced Web Developer with a passion for creating innovative digital solutions. Seeking a challenging career in Web Development to leverage technical expertise and communication skills to achieve organizational objectives through team collaboration and delivering high-quality results.
-                            </p>
-                        </div>
-                    </section>
-
-                    <!-- Specialization -->
-                    <section class="mb-10">
-                        <h2 class="section-title">Specialization</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="card flex items-center gap-4">
-                                <div class="icon-box">
-                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10.5 1.5H4.75A2.25 2.25 0 002.5 3.75v12.5A2.25 2.25 0 004.75 18.5h10.5a2.25 2.25 0 002.25-2.25V6.5m-13-5v5m8-5v5M2.5 10.5h15"></path></svg>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-gray-900">PHP (Laravel)</h3>
-                                    <p class="text-gray-600 text-sm">Backend Framework</p>
-                                </div>
-                            </div>
-                            <div class="card flex items-center gap-4">
-                                <div class="icon-box">
-                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 3.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM2 10a8 8 0 1116 0 8 8 0 01-16 0z"></path></svg>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-gray-900">Python (Django)</h3>
-                                    <p class="text-gray-600 text-sm">Web Framework</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <div class="divider"></div>
-
-                    <!-- Tabbed Sections -->
-                    <div class="mb-10">
-                        <div class="flex flex-wrap border-b-2 border-gray-200 mb-8">
-                            <button class="tab-button active" data-tab="experience">💼 Experience</button>
-                            <button class="tab-button" data-tab="education">🎓 Education</button>
-                            <button class="tab-button" data-tab="certificates">🏆 Certificates</button>
-                        </div>
-
-                        <!-- Work Experience Tab -->
-                        <div id="experience" class="tab-content active">
-                            <div class="space-y-6">
-                                <div class="timeline-item">
-                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                                        <h3 class="text-xl font-bold text-gray-900">Web Developer</h3>
-                                        <span class="badge">Since Nov 2020</span>
-                                    </div>
-                                    <p class="text-indigo-600 font-semibold mb-3">Sharifineya Travel Agency</p>
-                                    <ul class="space-y-2 text-gray-700">
-                                        <li class="flex items-start gap-3">
-                                            <span class="text-indigo-500 font-bold mt-1">•</span>
-                                            <span>Designing responsive User Interfaces with modern frameworks</span>
-                                        </li>
-                                        <li class="flex items-start gap-3">
-                                            <span class="text-indigo-500 font-bold mt-1">•</span>
-                                            <span>Designing and optimizing Database architectures</span>
-                                        </li>
-                                        <li class="flex items-start gap-3">
-                                            <span class="text-indigo-500 font-bold mt-1">•</span>
-                                            <span>Managing MVC architecture for scalable applications</span>
-                                        </li>
-                                    </ul>
-                                    <div class="mt-4">
-                                        <a href="https://www.sharifineya.net" target="_blank" class="inline-flex items-center gap-2 text-indigo-600 hover:text-purple-600 font-semibold transition-colors">
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h4a.75.75 0 010 1.5h-4z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 001.06.053l4.5-4.25a.75.75 0 10-1.06-1.06l4.5 4.25a.75.75 0 001.06-.053l2.25-2.5a.75.75 0 10-1.06-1.06l-1.69 1.22-3.45-3.25a.75.75 0 10-1.06 1.06l2.5 2.35-3.44 3.25a.75.75 0 00.053 1.06z" clip-rule="evenodd"></path></svg>
-                                            Visit Website
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-item">
-                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                                        <h3 class="text-xl font-bold text-gray-900">Web Developer</h3>
-                                        <span class="badge">Aug 2017 - Sep 2020</span>
-                                    </div>
-                                    <p class="text-indigo-600 font-semibold mb-3">ANAR SABZ TRADING COMPANY</p>
-                                    <ul class="space-y-2 text-gray-700">
-                                        <li class="flex items-start gap-3">
-                                            <span class="text-indigo-500 font-bold mt-1">•</span>
-                                            <span>Designed and implemented intuitive User Interfaces</span>
-                                        </li>
-                                        <li class="flex items-start gap-3">
-                                            <span class="text-indigo-500 font-bold mt-1">•</span>
-                                            <span>Created robust database schemas and optimization</span>
-                                        </li>
-                                        <li class="flex items-start gap-3">
-                                            <span class="text-indigo-500 font-bold mt-1">•</span>
-                                            <span>Maintained view and controller layers of applications</span>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="timeline-item">
-                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                                        <h3 class="text-xl font-bold text-gray-900">Data Entry Operator</h3>
-                                        <span class="badge">Oct 2016 - Jun 2017</span>
-                                    </div>
-                                    <p class="text-indigo-600 font-semibold mb-3">NETLINKS Ltd (APPS Project)</p>
-                                    <ul class="space-y-2 text-gray-700">
-                                        <li class="flex items-start gap-3">
-                                            <span class="text-indigo-500 font-bold mt-1">•</span>
-                                            <span>Registered military officers in AHRIMS (Afghan Human Resource Information Management System)</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Education Tab -->
-                        <div id="education" class="tab-content">
-                            <div class="space-y-6">
-                                <div class="timeline-item">
-                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                                        <h3 class="text-xl font-bold text-gray-900">Bachelor in Computer Science</h3>
-                                        <span class="badge">2012 - 2015</span>
-                                    </div>
-                                    <p class="text-indigo-600 font-semibold">University of Calicut, Kerala, India</p>
-                                </div>
-
-                                <div class="timeline-item">
-                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                                        <h3 class="text-xl font-bold text-gray-900">Baccalaureate</h3>
-                                        <span class="badge">Graduated 2011</span>
-                                    </div>
-                                    <p class="text-indigo-600 font-semibold">Abdul Rahim Shaheed High School, Kabul, Afghanistan</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Certificates Tab -->
-                        <div id="certificates" class="tab-content">
-                            <div class="space-y-6">
-                                <div class="timeline-item">
-                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                                        <h3 class="text-xl font-bold text-gray-900">Certificate in Web Development</h3>
-                                        <span class="badge">February 2015</span>
-                                    </div>
-                                    <p class="text-indigo-600 font-semibold">Al-Farook Educational Center, Kerala, India</p>
-                                </div>
-
-                                <div class="timeline-item">
-                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                                        <h3 class="text-xl font-bold text-gray-900">Certificate in C++ Programming</h3>
-                                        <span class="badge">November 2013</span>
-                                    </div>
-                                    <p class="text-indigo-600 font-semibold">Al-Farook Educational Center, Kerala, India</p>
-                                </div>
-
-                                <div class="timeline-item">
-                                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                                        <h3 class="text-xl font-bold text-gray-900">Certificate in C Programming</h3>
-                                        <span class="badge">November 2013</span>
-                                    </div>
-                                    <p class="text-indigo-600 font-semibold">Al-Farook Educational Center, Kerala, India</p>
-                                </div>
-                            </div>
-                        </div>
+            <a class="project-card" href="https://github.com/ghulamalirasuli/sarafi" target="_blank">
+                <div>
+                    <div class="project-name">
+                        sarafi
+                        <span class="arrow">↗</span>
                     </div>
-
-                    <div class="divider"></div>
-
-                    <!-- Achievements -->
-                    <section class="mb-10">
-                        <h2 class="section-title">Achievements</h2>
-                        <div class="grid gap-4">
-                            <div class="card flex items-start gap-4">
-                                <div class="icon-box mt-1">⭐</div>
-                                <p class="text-gray-700">Merit Certificates from Ministry of Interior and General Commanding of Border Police</p>
-                            </div>
-                            <div class="card flex items-start gap-4">
-                                <div class="icon-box mt-1">🏅</div>
-                                <p class="text-gray-700">Merit Certificates for Successfully Completion of biometric project under Supervision of ISAF at Kabul</p>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Technical Skills -->
-                    <section class="mb-10">
-                        <h2 class="section-title">Technical Skills</h2>
-                        <div class="card">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <div>
-                                    <h4 class="font-bold text-gray-900 mb-3">Backend</h4>
-                                    <div>
-                                        <span class="skill-tag">PHP (Laravel)</span>
-                                        <span class="skill-tag">Python (Django)</span>
-                                        <span class="skill-tag">RESTful APIs</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-900 mb-3">Frontend</h4>
-                                    <div>
-                                        <span class="skill-tag">JavaScript</span>
-                                        <span class="skill-tag">React</span>
-                                        <span class="skill-tag">Tailwind CSS</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-900 mb-3">Database</h4>
-                                    <div>
-                                        <span class="skill-tag">MySQL</span>
-                                        <span class="skill-tag">PostgreSQL</span>
-                                        <span class="skill-tag">MongoDB</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-900 mb-3">Tools</h4>
-                                    <div>
-                                        <span class="skill-tag">Git</span>
-                                        <span class="skill-tag">Docker</span>
-                                        <span class="skill-tag">AWS</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Portfolio & Links -->
-                    <section class="mb-10">
-                        <h2 class="section-title">Connect With Me</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <a href="https://www.linkedin.com/in/ghulam-ali-rasuli-9a645a27b" target="_blank" class="card card-hover text-center hover:border-indigo-500">
-                                <div class="icon-box mx-auto mb-3 w-14 h-14">
-                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2 4a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H3a1 1 0 01-1-1V4zm7 5a2 2 0 11-4 0 2 2 0 014 0zm2-2a3 3 0 11-6 0 3 3 0 016 0z" clip-rule="evenodd"></path></svg>
-                                </div>
-                                <h3 class="font-bold text-gray-900 mb-1">LinkedIn</h3>
-                                <p class="text-sm text-gray-600">Connect with me</p>
-                            </a>
-                            <a href="https://github.com/ghulamalirasuli" target="_blank" class="card card-hover text-center hover:border-indigo-500">
-                                <div class="icon-box mx-auto mb-3 w-14 h-14">
-                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                </div>
-                                <h3 class="font-bold text-gray-900 mb-1">GitHub</h3>
-                                <p class="text-sm text-gray-600">View my projects</p>
-                            </a>
-                            <a href="mailto:ghulamali456@gmail.com" class="card card-hover text-center hover:border-indigo-500">
-                                <div class="icon-box mx-auto mb-3 w-14 h-14">
-                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                                </div>
-                                <h3 class="font-bold text-gray-900 mb-1">Email</h3>
-                                <p class="text-sm text-gray-600">Get in touch</p>
-                            </a>
-                        </div>
-                    </section>
-
-                    <!-- Soft Skills & Languages -->
-                    <section class="mb-10">
-                        <h2 class="section-title">Soft Skills & Languages</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div class="card">
-                                <h4 class="font-bold text-gray-900 mb-4">Soft Skills</h4>
-                                <ul class="space-y-2">
-                                    <li class="flex items-center gap-3 text-gray-700">
-                                        <span class="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600"></span>
-                                        Problem-solving & Critical Thinking
-                                    </li>
-                                    <li class="flex items-center gap-3 text-gray-700">
-                                        <span class="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600"></span>
-                                        Team Collaboration & Leadership
-                                    </li>
-                                    <li class="flex items-center gap-3 text-gray-700">
-                                        <span class="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600"></span>
-                                        Communication & Presentation
-                                    </li>
-                                    <li class="flex items-center gap-3 text-gray-700">
-                                        <span class="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600"></span>
-                                        Adaptability & Time Management
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card">
-                                <h4 class="font-bold text-gray-900 mb-4">Languages</h4>
-                                <ul class="space-y-3">
-                                    <li>
-                                        <div class="flex justify-between mb-1">
-                                            <span class="text-gray-700 font-medium">English</span>
-                                            <span class="text-gray-600 text-sm">Fluent</span>
-                                        </div>
-                                        <div class="w-full bg-gray-200 rounded-full h-2">
-                                            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 h-2 rounded-full" style="width: 90%"></div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="flex justify-between mb-1">
-                                            <span class="text-gray-700 font-medium">Dari</span>
-                                            <span class="text-gray-600 text-sm">Native</span>
-                                        </div>
-                                        <div class="w-full bg-gray-200 rounded-full h-2">
-                                            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 h-2 rounded-full" style="width: 100%"></div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="flex justify-between mb-1">
-                                            <span class="text-gray-700 font-medium">Pashto</span>
-                                            <span class="text-gray-600 text-sm">Proficient</span>
-                                        </div>
-                                        <div class="w-full bg-gray-200 rounded-full h-2">
-                                            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 h-2 rounded-full" style="width: 85%"></div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
+                    <div class="project-desc">Currency exchange (sarafi) platform built with TypeScript.</div>
                 </div>
+                <div class="project-meta">
+                    <span class="lang-badge lang-ts">TypeScript</span>
+                    <span class="visibility">public</span>
+                </div>
+            </a>
+
+            <a class="project-card" href="https://github.com/ghulamalirasuli/cleaning-services" target="_blank">
+                <div>
+                    <div class="project-name">
+                        cleaning-services
+                        <span class="arrow">↗</span>
+                    </div>
+                    <div class="project-desc">Service booking web app for a cleaning business, built with JavaScript.</div>
+                </div>
+                <div class="project-meta">
+                    <span class="lang-badge lang-js">JavaScript</span>
+                    <span class="visibility">public</span>
+                </div>
+            </a>
+
+            <a class="project-card" href="https://github.com/ghulamalirasuli/mycv" target="_blank">
+                <div>
+                    <div class="project-name">
+                        mycv
+                        <span class="arrow">↗</span>
+                    </div>
+                    <div class="project-desc">Personal CV / résumé as a web page, built in HTML.</div>
+                </div>
+                <div class="project-meta">
+                    <span class="lang-badge lang-html">HTML</span>
+                    <span class="visibility">public</span>
+                </div>
+            </a>
+
+            <a class="project-card" href="https://github.com/ghulamalirasuli/flightbooking-filament" target="_blank">
+                <div>
+                    <div class="project-name">
+                        flightbooking-filament
+                        <span class="arrow">↗</span>
+                    </div>
+                    <div class="project-desc">Flight booking system powered by Laravel + Filament admin panel.</div>
+                </div>
+                <div class="project-meta">
+                    <span class="lang-badge lang-php">PHP</span>
+                    <span class="visibility">public</span>
+                </div>
+            </a>
+
+            <a class="project-card" href="https://github.com/ghulamalirasuli/my-portfolio" target="_blank">
+                <div>
+                    <div class="project-name">
+                        my-portfolio
+                        <span class="arrow">↗</span>
+                    </div>
+                    <div class="project-desc">Personal portfolio website showcasing projects and skills.</div>
+                </div>
+                <div class="project-meta">
+                    <span class="lang-badge lang-none">—</span>
+                    <span class="visibility">public</span>
+                </div>
+            </a>
+
+            <a class="project-card" href="https://github.com/ghulamalirasuli/blog" target="_blank">
+                <div>
+                    <div class="project-name">
+                        blog
+                        <span class="arrow">↗</span>
+                    </div>
+                    <div class="project-desc">A personal blog application.</div>
+                </div>
+                <div class="project-meta">
+                    <span class="lang-badge lang-none">—</span>
+                    <span class="visibility">public</span>
+                </div>
+            </a>
+
+            <a class="project-card" href="https://github.com/ghulamalirasuli/sharifi-travel" target="_blank">
+                <div>
+                    <div class="project-name">
+                        sharifi-travel
+                        <span class="arrow">↗</span>
+                    </div>
+                    <div class="project-desc">Travel agency web application — the public face of Sharifineya Travel Agency.</div>
+                </div>
+                <div class="project-meta">
+                    <span class="lang-badge lang-none">—</span>
+                    <span class="visibility">public</span>
+                </div>
+            </a>
+
+            <a class="project-card" href="https://github.com/ghulamalirasuli/ghulamalirasuli" target="_blank">
+                <div>
+                    <div class="project-name">
+                        ghulamalirasuli <em style="font-style:normal;font-size:0.7rem;color:var(--muted)">profile</em>
+                        <span class="arrow">↗</span>
+                    </div>
+                    <div class="project-desc">GitHub profile README — config files for my GitHub profile.</div>
+                </div>
+                <div class="project-meta">
+                    <span class="lang-badge lang-none">config</span>
+                    <span class="visibility">public</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- EXPERIENCE -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-label">Experience</h2>
+        </div>
+        <div class="exp-grid">
+            <div class="exp-card">
+                <div class="exp-role">Web Developer</div>
+                <div class="exp-company">Sharifineya Travel Agency</div>
+                <div class="exp-period">Nov 2020 — present &nbsp;·&nbsp; sharifineya.net</div>
             </div>
-
-            <!-- Footer -->
-            <div class="text-center mt-8 text-white text-sm">
-                <p>© 2026 Ghulam Ali Rasuli. All rights reserved.</p>
-                <p>Last Updated: April 2026</p>
+            <div class="exp-card">
+                <div class="exp-role">Web Developer</div>
+                <div class="exp-company">ANAR SABZ Trading Company</div>
+                <div class="exp-period">Aug 2017 — Sep 2020</div>
+            </div>
+            <div class="exp-card">
+                <div class="exp-role">Data Entry Operator</div>
+                <div class="exp-company">NETLINKS Ltd (APPS Project)</div>
+                <div class="exp-period">Oct 2016 — Jun 2017</div>
             </div>
         </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- FOOTER LINKS -->
+    <div class="footer-links">
+        <a class="social-link" href="https://github.com/ghulamalirasuli" target="_blank">↗ GitHub</a>
+        <a class="social-link" href="https://www.linkedin.com/in/ghulam-ali-rasuli-9a645a27b" target="_blank">↗ LinkedIn</a>
+        <a class="social-link" href="mailto:ghulamali456@gmail.com">↗ Email</a>
+        <a class="social-link" href="https://www.sharifineya.net" target="_blank">↗ sharifineya.net</a>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
-
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.getAttribute('data-tab');
-                    
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));  
-                    
-                    button.classList.add('active');
-                    document.getElementById(tabId).classList.add('active');
-                });
-            });
-        });
-    </script>
+</div>
 </body>
 </html>
